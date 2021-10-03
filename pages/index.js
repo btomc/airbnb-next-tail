@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
+import SmallCard from '../components/SmallCard'
 
 export default function Home({ exploreData }) {
   return (
@@ -18,9 +19,16 @@ export default function Home({ exploreData }) {
           <h2 className='text-4xl font-semibold pb-5'>Explore Nearby</h2>
 
           {/* Pull some data from a server - API endpoints */}
-          {exploreData?.map((item) => (
-            <h2>{item.location}</h2>
-          ))}
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            {exploreData?.map((item, index) => (
+              <SmallCard
+                key={item.index}
+                img={item.img}
+                distance={item.distance}
+                location={item.location}
+              />
+            ))}
+          </div>
         </section>
       </main>
     </div>
